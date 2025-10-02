@@ -1,0 +1,2285 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8 CloudsManipur - Professional Web Development</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background: #000000;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Enhanced Animated Background */
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 15%;
+            left: 8%;
+            background: linear-gradient(45deg, rgba(66, 133, 244, 0.3), rgba(255, 255, 255, 0.1));
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 55%;
+            right: 12%;
+            background: linear-gradient(45deg, rgba(76, 175, 80, 0.3), rgba(255, 255, 255, 0.1));
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            top: 75%;
+            left: 25%;
+            background: linear-gradient(45deg, rgba(244, 67, 54, 0.3), rgba(255, 255, 255, 0.1));
+            animation-delay: 4s;
+        }
+
+        .shape:nth-child(4) {
+            width: 120px;
+            height: 120px;
+            top: 25%;
+            right: 35%;
+            background: linear-gradient(45deg, rgba(255, 193, 7, 0.3), rgba(255, 255, 255, 0.1));
+            animation-delay: 1s;
+        }
+
+        .shape:nth-child(5) {
+            width: 90px;
+            height: 90px;
+            top: 45%;
+            left: 50%;
+            background: linear-gradient(45deg, rgba(156, 39, 176, 0.3), rgba(255, 255, 255, 0.1));
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.7;
+            }
+            25% {
+                transform: translateY(-30px) rotate(90deg) scale(1.1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg) scale(0.9);
+                opacity: 0.8;
+            }
+            75% {
+                transform: translateY(-40px) rotate(270deg) scale(1.05);
+                opacity: 0.85;
+            }
+        }
+
+        /* Enhanced Top Stripe */
+        .top-stripe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, #4285f4, #34a853, #fbbc05, #ea4335, #9c27b0, #4285f4);
+            background-size: 300% 100%;
+            animation: stripeMove 4s linear infinite;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(66, 133, 244, 0.5);
+        }
+
+        @keyframes stripeMove {
+            0% { background-position: -300% 0; }
+            100% { background-position: 300% 0; }
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+        }
+
+        /* Enhanced Login Interface */
+        .login-interface {
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.2), rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(20px);
+            padding: 60px 40px;
+            border-radius: 25px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 50px rgba(66, 133, 244, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            max-width: 500px;
+            width: 90%;
+            animation: slideInUp 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-interface::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .company-name {
+            font-size: 3.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #4285f4, #34a853, #fbbc05, #ea4335);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 3s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 15px rgba(66, 133, 244, 0.5));
+                transform: scale(1);
+            }
+            to {
+                filter: drop-shadow(0 0 25px rgba(66, 133, 244, 0.8));
+                transform: scale(1.02);
+            }
+        }
+
+        .description {
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            animation: fadeIn 2s ease-in;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 0.95; transform: translateY(0); }
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #4285f4, #34a853);
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            font-size: 1.3em;
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(66, 133, 244, 0.3);
+            min-width: 140px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(66, 133, 244, 0.5);
+            background: linear-gradient(45deg, #3367d6, #2e7d32);
+        }
+
+        /* Enhanced Google Sign-in Button */
+        .google-signin {
+            background: linear-gradient(45deg, #4285f4, #34a853);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-family: 'Times New Roman', serif;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 0 auto;
+            box-shadow: 0 8px 20px rgba(66, 133, 244, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .google-signin::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .google-signin:hover::before {
+            left: 100%;
+        }
+
+        .google-signin:hover {
+            background: linear-gradient(45deg, #3367d6, #2e7d32);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(66, 133, 244, 0.5);
+        }
+
+        /* Professional Website Interface */
+        .website-interface {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #000;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.2), rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(20px);
+            padding: 15px 0;
+            position: fixed;
+            top: 8px;
+            left: 0;
+            right: 0;
+            z-index: 3000;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 2em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #4285f4, #34a853);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            padding: 12px 18px;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.3s;
+        }
+
+        .nav-menu a:hover::before {
+            left: 100%;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(66, 133, 244, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(66, 133, 244, 0.3);
+        }
+
+        /* Events Button in Navbar */
+        .events-btn {
+            background: linear-gradient(45deg, #ea4335, #fbbc05) !important;
+            color: white !important;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(234, 67, 53, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(234, 67, 53, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(234, 67, 53, 0); }
+        }
+
+        .website-content {
+            padding-top: 120px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 120px 0;
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.2), rgba(52, 168, 83, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 35px;
+            margin: 50px 0;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            animation: shimmer 4s linear infinite;
+        }
+
+        .hero-title {
+            font-size: 4.5em;
+            font-weight: bold;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #4285f4, #34a853, #fbbc05, #ea4335);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.6em;
+            margin-bottom: 50px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #4285f4, #34a853);
+            color: white;
+            border: none;
+            padding: 22px 45px;
+            font-size: 1.4em;
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin: 12px;
+            box-shadow: 0 10px 25px rgba(66, 133, 244, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(66, 133, 244, 0.5);
+            background: linear-gradient(45deg, #3367d6, #2e7d32);
+        }
+
+        /* Enhanced Services Section */
+        .services-section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 70px;
+            background: linear-gradient(45deg, #4285f4, #34a853);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.15), rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(20px);
+            padding: 45px;
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: transform 0.5s;
+            transform: translateX(-100%) translateY(-100%) rotate(45deg);
+        }
+
+        .service-card:hover::before {
+            transform: translateX(100%) translateY(100%) rotate(45deg);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(66, 133, 244, 0.2);
+            border-color: rgba(66, 133, 244, 0.5);
+        }
+
+        .service-icon {
+            font-size: 3.5em;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-title {
+            font-size: 1.6em;
+            font-weight: bold;
+            margin-bottom: 18px;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-description {
+            opacity: 0.85;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Enhanced About Section */
+        .about-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(52, 168, 83, 0.15), rgba(255, 255, 255, 0.05));
+            border-radius: 35px;
+            margin: 60px 0;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+            padding: 0 50px;
+        }
+
+        .about-text {
+            font-size: 1.3em;
+            line-height: 1.9;
+            opacity: 0.95;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 35px;
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.2), rgba(255, 255, 255, 0.1));
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(66, 133, 244, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3.2em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #4285f4, #34a853);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        /* Enhanced Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 650px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.15), rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(66, 133, 244, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: white;
+            font-size: 1.1em;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #4285f4;
+            box-shadow: 0 0 20px rgba(66, 133, 244, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        textarea.form-input {
+            height: 140px;
+            resize: vertical;
+        }
+
+        /* Input Styles */
+        .input-group {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .input-label {
+            color: white;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.2em;
+            font-family: 'Times New Roman', serif;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #4285f4;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(66, 133, 244, 0.4);
+        }
+
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Enhanced Attendance Interface */
+        .attendance-interface {
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.2), rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(20px);
+            padding: 60px 45px;
+            border-radius: 25px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            max-width: 500px;
+            width: 90%;
+            animation: bounceIn 0.8s ease-out;
+            box-shadow: 0 25px 50px rgba(66, 133, 244, 0.3);
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3) rotate(-10deg); }
+            50% { opacity: 1; transform: scale(1.05) rotate(2deg); }
+            70% { transform: scale(0.9) rotate(-1deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+
+        .attendance-btn {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 25px 45px;
+            font-size: 1.4em;
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin: 12px;
+            min-width: 160px;
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .attendance-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .attendance-btn:hover::before {
+            left: 100%;
+        }
+
+        .attendance-btn.absent {
+            background: linear-gradient(45deg, #f44336, #da190b);
+            box-shadow: 0 10px 25px rgba(244, 67, 54, 0.3);
+        }
+
+        .attendance-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.4);
+        }
+
+        .attendance-btn.absent:hover {
+            box-shadow: 0 15px 35px rgba(244, 67, 54, 0.4);
+        }
+
+        /* Enhanced Host Panel */
+        .host-panel {
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.2), rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: 25px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            max-width: 1200px;
+            width: 95%;
+            animation: slideInUp 1s ease-out;
+            box-shadow: 0 25px 50px rgba(66, 133, 244, 0.3);
+        }
+
+        .host-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(66, 133, 244, 0.1));
+            color: white;
+            border: none;
+            padding: 18px 28px;
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            border-radius: 15px 15px 0 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.3s;
+        }
+
+        .tab-button:hover::before {
+            left: 100%;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.3), rgba(255, 255, 255, 0.2));
+            border-bottom: 4px solid #4285f4;
+            transform: translateY(-2px);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Enhanced Charts and Tables */
+        .attendance-chart, .project-list, .message-list {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(66, 133, 244, 0.05));
+            padding: 30px;
+            border-radius: 20px;
+            margin: 25px 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+        }
+
+        .chart-row, .project-item, .message-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .chart-row:hover, .project-item:hover, .message-item:hover {
+            background: rgba(66, 133, 244, 0.1);
+            border-radius: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .chart-row:last-child, .project-item:last-child, .message-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-present {
+            color: #4CAF50;
+            font-weight: bold;
+            background: rgba(76, 175, 80, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+        }
+
+        .status-absent {
+            color: #f44336;
+            font-weight: bold;
+            background: rgba(244, 67, 54, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+        }
+
+        .status-completed {
+            color: #4CAF50;
+            font-weight: bold;
+            background: rgba(76, 175, 80, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+        }
+
+        .status-pending {
+            color: #ff9800;
+            font-weight: bold;
+            background: rgba(255, 152, 0, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+        }
+
+        .status-failed {
+            color: #f44336;
+            font-weight: bold;
+            background: rgba(244, 67, 54, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+        }
+
+        /* Enhanced Editor */
+        .website-editor, .project-creator, .message-creator {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(66, 133, 244, 0.05));
+            padding: 30px;
+            border-radius: 20px;
+            margin: 25px 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+        }
+
+        .editor-section, .creator-section {
+            margin-bottom: 35px;
+        }
+
+        .editor-label, .creator-label {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: white;
+            background: linear-gradient(45deg, #4285f4, #34a853);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .editor-input, .creator-input {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .editor-input:focus, .creator-input:focus {
+            outline: none;
+            border-color: #4285f4;
+            box-shadow: 0 0 20px rgba(66, 133, 244, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        textarea.editor-input, textarea.creator-input {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Enhanced Buttons */
+        .back-btn {
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(66, 133, 244, 0.2));
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            padding: 12px 25px;
+            font-size: 1.1em;
+            font-family: 'Times New Roman', serif;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 12px;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(45deg, #4285f4, #34a853);
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(66, 133, 244, 0.3);
+        }
+
+        /* Project and Message Buttons */
+        .project-btn, .message-btn {
+            background: linear-gradient(45deg, #4285f4, #34a853);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .project-btn:hover, .message-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(66, 133, 244, 0.4);
+        }
+
+        .project-btn.completed {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+        }
+
+        .project-btn.failed {
+            background: linear-gradient(45deg, #f44336, #da190b);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 5000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.2), rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(20px);
+            margin: 5% auto;
+            padding: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            width: 90%;
+            max-width: 600px;
+            color: white;
+            animation: modalSlideIn 0.5s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-50px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            color: #4285f4;
+            transform: scale(1.2);
+        }
+
+        /* Absent Reasons */
+        .absent-reasons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .reason-btn {
+            background: linear-gradient(45deg, #ff9800, #f57c00);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1em;
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reason-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+        }
+
+        /* Events Section */
+        .events-section {
+            background: linear-gradient(135deg, rgba(234, 67, 53, 0.2), rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: 25px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            margin: 30px 0;
+            box-shadow: 0 25px 50px rgba(234, 67, 53, 0.2);
+        }
+
+        .event-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(234, 67, 53, 0.1));
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(234, 67, 53, 0.3);
+        }
+
+        .event-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ea4335, #fbbc05);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .event-date {
+            color: #fbbc05;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .event-description {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .copyright {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, rgba(66, 133, 244, 0.9), rgba(52, 168, 83, 0.9));
+            padding: 12px 25px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Security Notice */
+        .security-notice {
+            margin-top: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 15px;
+            border-left: 5px solid #4285f4;
+            font-size: 1em;
+            opacity: 0.9;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .company-name {
+                font-size: 2.8em;
+            }
+            .hero-title {
+                font-size: 2.8em;
+            }
+            .nav-menu {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .host-tabs {
+                flex-direction: column;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Animated Top Stripe -->
+    <div class="top-stripe"></div>
+
+    <!-- Enhanced Floating Background Shapes -->
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Main Login Interface -->
+    <div class="container" id="loginScreen">
+        <div class="login-interface">
+            <h1 class="company-name">8 CloudsManipur</h1>
+            <p class="description">A powerful tool for web development</p>
+
+            <!-- Google Sign Up -->
+            <button class="google-signin" onclick="signUpWithGoogle()">
+                <span>🔗</span> Sign Up with Google
+            </button>
+            <br><br>
+
+            <div class="button-container">
+                <button class="btn" onclick="showSignIn()">Sign In</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Professional Website Interface -->
+    <div class="website-interface hidden" id="websiteInterface">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo" id="websiteLogo">8 CloudsManipur</div>
+                <ul class="nav-menu">
+                    <li><a href="#home" onclick="scrollToSection('home')">Home</a></li>
+                    <li><a href="#services" onclick="scrollToSection('services')">Services</a></li>
+                    <li><a href="#about" onclick="scrollToSection('about')">About</a></li>
+                    <li><a href="#contact" onclick="scrollToSection('contact')">Contact</a></li>
+                    <li><a href="#events" onclick="showEvents()" class="events-btn">🎉 Events</a></li>
+                    <li><a href="#" onclick="showLogin()" style="background: rgba(244,67,54,0.3);">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="website-content">
+            <!-- Hero Section -->
+            <section id="home" class="hero-section">
+                <h1 class="hero-title" id="heroTitle">Welcome to 8 CloudsManipur</h1>
+                <p class="hero-subtitle" id="heroSubtitle">Professional Web Development Solutions for Modern Businesses</p>
+                <button class="cta-button" onclick="scrollToSection('contact')">Get Started</button>
+                <button class="cta-button" onclick="scrollToSection('services')">Our Services</button>
+            </section>
+
+            <!-- Services Section -->
+            <section id="services" class="services-section">
+                <h2 class="section-title">Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🌐</div>
+                        <h3 class="service-title">Web Development</h3>
+                        <p class="service-description">Custom websites and web applications built with modern technologies and best practices.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📱</div>
+                        <h3 class="service-title">Mobile Apps</h3>
+                        <p class="service-description">Native and cross-platform mobile applications for iOS and Android devices.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">☁️</div>
+                        <h3 class="service-title">Cloud Solutions</h3>
+                        <p class="service-description">Scalable cloud infrastructure and deployment solutions for your applications.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🎨</div>
+                        <h3 class="service-title">UI/UX Design</h3>
+                        <p class="service-description">Beautiful and intuitive user interfaces designed for optimal user experience.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🔧</div>
+                        <h3 class="service-title">Maintenance</h3>
+                        <p class="service-description">Ongoing support and maintenance to keep your applications running smoothly.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📊</div>
+                        <h3 class="service-title">Analytics</h3>
+                        <p class="service-description">Data analytics and insights to help you make informed business decisions.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="about-section">
+                <h2 class="section-title">About Us</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p id="aboutText">8 CloudsManipur is a leading web development company based in Manipur, India. We specialize in creating innovative digital solutions that help businesses thrive in the modern digital landscape.</p>
+                        <br>
+                        <p>Our team of experienced developers and designers work closely with clients to deliver high-quality, scalable, and user-friendly applications that meet their specific needs and exceed their expectations.</p>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div>Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">25+</div>
+                            <div>Happy Clients</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3+</div>
+                            <div>Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div>Support</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="contact-section">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="contact-form">
+                    <form onsubmit="submitContactForm(event)">
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-input" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Subject</label>
+                            <input type="text" class="form-input" placeholder="Project Inquiry" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-input" placeholder="Tell us about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button">Send Message</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Events Modal -->
+    <div id="eventsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEvents()">&times;</span>
+            <div class="events-section">
+                <h2 class="section-title">🎉 Current Events</h2>
+                <div id="eventsList">
+                    <!-- Events will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign In Interface -->
+    <div class="container hidden" id="signinScreen">
+        <div class="login-interface">
+            <h2 class="company-name" style="font-size: 2.8em;">Welcome Back</h2>
+            <div class="input-group">
+                <label class="input-label">Username</label>
+                <input type="text" class="input-field" id="username" placeholder="Enter your username">
+            </div>
+            <div class="input-group">
+                <label class="input-label">MPIN</label>
+                <input type="password" class="input-field" id="mpin" placeholder="Enter your MPIN">
+            </div>
+            <div class="button-container">
+                <button class="btn" onclick="validateLogin()">Login</button>
+                <button class="back-btn" onclick="showLogin()">Back</button>
+            </div>
+
+            <!-- Security Notice -->
+            <div class="security-notice">
+                <p><strong>🔒 Secure Login</strong></p>
+                <p>Please enter your authorized credentials to access the system. Contact your administrator if you need assistance.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Worker Interface -->
+    <div class="container hidden" id="workerInterface">
+        <div class="host-panel">
+            <h2 class="company-name" style="font-size: 2.5em;">Worker Dashboard</h2>
+
+            <div class="host-tabs">
+                <button class="tab-button active" onclick="showWorkerTab('attendance')">📊 Attendance</button>
+                <button class="tab-button" onclick="showWorkerTab('projects')">📋 Projects</button>
+                <button class="tab-button" onclick="showWorkerTab('messages')">💬 Messages</button>
+            </div>
+
+            <!-- Worker Attendance Tab -->
+            <div id="workerAttendanceTab" class="tab-content active">
+                <p class="description" id="workerWelcomeText">Welcome!</p>
+                <p class="description">Please mark your attendance</p>
+                <div class="button-container">
+                    <button class="attendance-btn" onclick="markAttendance('present')">Present</button>
+                    <button class="attendance-btn absent" onclick="showAbsentReasons()">Absent</button>
+                </div>
+            </div>
+
+            <!-- Worker Projects Tab -->
+            <div id="workerProjectsTab" class="tab-content">
+                <p class="description">Your Assigned Projects</p>
+                <div class="project-list" id="workerProjectsList">
+                    <!-- Projects will be populated here -->
+                </div>
+            </div>
+
+            <!-- Worker Messages Tab -->
+            <div id="workerMessagesTab" class="tab-content">
+                <p class="description">Messages from Host</p>
+                <div class="message-list" id="workerMessagesList">
+                    <!-- Messages will be populated here -->
+                </div>
+                <div class="message-creator">
+                    <div class="creator-section">
+                        <label class="creator-label">Send Reply to Host</label>
+                        <textarea class="creator-input" id="workerReplyInput" placeholder="Type your message to the host..."></textarea>
+                    </div>
+                    <button class="btn" onclick="sendWorkerReply()">📤 Send Reply</button>
+                </div>
+            </div>
+
+            <button class="back-btn" onclick="showLogin()">Logout</button>
+        </div>
+    </div>
+
+    <!-- Absent Reasons Modal -->
+    <div id="absentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAbsentModal()">&times;</span>
+            <h3 style="margin-bottom: 20px; color: #f44336;">Select Reason for Absence</h3>
+            <div class="absent-reasons">
+                <button class="reason-btn" onclick="markAbsent('Sick Leave')">🤒 Sick Leave</button>
+                <button class="reason-btn" onclick="markAbsent('Personal Emergency')">🚨 Personal Emergency</button>
+                <button class="reason-btn" onclick="markAbsent('Family Function')">👨‍👩‍👧‍👦 Family Function</button>
+                <button class="reason-btn" onclick="markAbsent('Medical Appointment')">🏥 Medical Appointment</button>
+                <button class="reason-btn" onclick="markAbsent('Transportation Issue')">🚗 Transportation Issue</button>
+                <button class="reason-btn" onclick="markAbsent('Weather Conditions')">🌧️ Weather Conditions</button>
+                <button class="reason-btn" onclick="markAbsent('Technical Issues')">💻 Technical Issues</button>
+                <button class="reason-btn" onclick="markAbsent('Other')">❓ Other</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Host Panel -->
+    <div class="container hidden" id="hostPanel">
+        <div class="host-panel">
+            <h2 class="company-name" style="font-size: 2.5em;">Host Control Panel</h2>
+
+            <div class="host-tabs">
+                <button class="tab-button active" onclick="showTab('attendance')">📊 Attendance</button>
+                <button class="tab-button" onclick="showTab('website')">🌐 Website Editor</button>
+                <button class="tab-button" onclick="showTab('projects')">📋 Project Manager</button>
+                <button class="tab-button" onclick="showTab('messages')">💬 Messages</button>
+                <button class="tab-button" onclick="showTab('events')">🎉 Events</button>
+            </div>
+
+            <!-- Attendance Tab -->
+            <div id="attendanceTab" class="tab-content active">
+                <p class="description">Attendance Management System</p>
+                <div class="attendance-chart">
+                    <h3 style="margin-bottom: 20px; color: #fff;">📊 Attendance Records</h3>
+                    <div id="attendanceRecords">
+                        <!-- Records will be populated here -->
+                    </div>
+                </div>
+                <div class="button-container">
+                    <button class="btn" onclick="refreshRecords()">🔄 Refresh Records</button>
+                    <button class="btn" onclick="clearRecords()">🗑️ Clear All Records</button>
+                    <button class="btn" onclick="exportRecords()">📥 Export Data</button>
+                </div>
+            </div>
+
+            <!-- Website Editor Tab -->
+            <div id="websiteTab" class="tab-content">
+                <p class="description">Update Website Content</p>
+                <div class="website-editor">
+                    <div class="editor-section">
+                        <label class="editor-label">Company Logo/Name</label>
+                        <input type="text" class="editor-input" id="logoInput" placeholder="8 CloudsManipur">
+                    </div>
+                    <div class="editor-section">
+                        <label class="editor-label">Hero Title</label>
+                        <input type="text" class="editor-input" id="heroTitleInput" placeholder="Welcome to 8 CloudsManipur">
+                    </div>
+                    <div class="editor-section">
+                        <label class="editor-label">Hero Subtitle</label>
+                        <textarea class="editor-input" id="heroSubtitleInput" placeholder="Professional Web Development Solutions..."></textarea>
+                    </div>
+                    <div class="editor-section">
+                        <label class="editor-label">About Us Text</label>
+                        <textarea class="editor-input" id="aboutTextInput" placeholder="8 CloudsManipur is a leading web development company..."></textarea>
+                    </div>
+                    <div class="button-container">
+                        <button class="btn" onclick="updateWebsite()">💾 Save Changes</button>
+                        <button class="btn" onclick="previewWebsite()">👁️ Preview</button>
+                        <button class="btn" onclick="resetWebsite()">🔄 Reset to Default</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Manager Tab -->
+            <div id="projectsTab" class="tab-content">
+                <p class="description">Project Management System</p>
+                <div class="project-creator">
+                    <h3 style="margin-bottom: 20px; color: #4285f4;">Create New Project</h3>
+                    <div class="creator-section">
+                        <label class="creator-label">Project Title</label>
+                        <input type="text" class="creator-input" id="projectTitleInput" placeholder="Enter project title">
+                    </div>
+                    <div class="creator-section">
+                        <label class="creator-label">Assign to Worker</label>
+                        <select class="creator-input" id="projectWorkerSelect">
+                            <option value="">Select Worker</option>
+                            <option value="worker@1">worker@1</option>
+                            <option value="worker@2">worker@2</option>
+                            <option value="worker@3">worker@3</option>
+                            <option value="Luwanganba">Luwanganba</option>
+                        </select>
+                    </div>
+                    <div class="creator-section">
+                        <label class="creator-label">Project Description</label>
+                        <textarea class="creator-input" id="projectDescInput" placeholder="Detailed project description..."></textarea>
+                    </div>
+                    <div class="creator-section">
+                        <label class="creator-label">Deadline</label>
+                        <input type="date" class="creator-input" id="projectDeadlineInput">
+                    </div>
+                    <button class="btn" onclick="createProject()">📋 Create Project</button>
+                </div>
+
+                <div class="project-list">
+                    <h3 style="margin-bottom: 20px; color: #fff;">📋 All Projects</h3>
+                    <div id="allProjectsList">
+                        <!-- Projects will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messages Tab -->
+            <div id="messagesTab" class="tab-content">
+                <p class="description">Communication Center</p>
+                <div class="message-creator">
+                    <h3 style="margin-bottom: 20px; color: #4285f4;">Send Message to Worker</h3>
+                    <div class="creator-section">
+                        <label class="creator-label">Send to Worker</label>
+                        <select class="creator-input" id="messageWorkerSelect">
+                            <option value="">Select Worker</option>
+                            <option value="worker@1">worker@1</option>
+                            <option value="worker@2">worker@2</option>
+                            <option value="worker@3">worker@3</option>
+                            <option value="Luwanganba">Luwanganba</option>
+                            <option value="all">All Workers</option>
+                        </select>
+                    </div>
+                    <div class="creator-section">
+                        <label class="creator-label">Message</label>
+                        <textarea class="creator-input" id="messageContentInput" placeholder="Type your message..."></textarea>
+                    </div>
+                    <button class="btn" onclick="sendMessage()">📤 Send Message</button>
+                </div>
+
+                <div class="message-list">
+                    <h3 style="margin-bottom: 20px; color: #fff;">💬 All Messages</h3>
+                    <div id="allMessagesList">
+                        <!-- Messages will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events Tab -->
+            <div id="eventsTab" class="tab-content">
+                <p class="description">Event Management System</p>
+                <div class="project-creator">
+                    <h3 style="margin-bottom: 20px; color: #ea4335;">Create New Event</h3>
+                    <div class="creator-section">
+                        <label class="creator-label">Event Title</label>
+                        <input type="text" class="creator-input" id="eventTitleInput" placeholder="Enter event title">
+                    </div>
+                    <div class="creator-section">
+                        <label class="creator-label">Event Date</label>
+                        <input type="date" class="creator-input" id="eventDateInput">
+                    </div>
+                    <div class="creator-section">
+                        <label class="creator-label">Event Description</label>
+                        <textarea class="creator-input" id="eventDescInput" placeholder="Event details and description..."></textarea>
+                    </div>
+                    <button class="btn" onclick="createEvent()">🎉 Create Event</button>
+                </div>
+
+                <div class="project-list">
+                    <h3 style="margin-bottom: 20px; color: #fff;">🎉 All Events</h3>
+                    <div id="allEventsList">
+                        <!-- Events will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <button class="back-btn" onclick="showLogin()">Logout</button>
+        </div>
+    </div>
+
+    <!-- Copyright Footer -->
+    <div class="copyright">
+        8 CloudsManipur © All Rights Reserved
+    </div>
+
+    <script>
+        // Global variables
+        let currentUser = '';
+        let attendanceData = JSON.parse(localStorage.getItem('attendanceData')) || [];
+        let projectsData = JSON.parse(localStorage.getItem('projectsData')) || [];
+        let messagesData = JSON.parse(localStorage.getItem('messagesData')) || [];
+        let eventsData = JSON.parse(localStorage.getItem('eventsData')) || [];
+        let websiteData = JSON.parse(localStorage.getItem('websiteData')) || {
+            logo: '8 CloudsManipur',
+            heroTitle: 'Welcome to 8 CloudsManipur',
+            heroSubtitle: 'Professional Web Development Solutions for Modern Businesses',
+            aboutText: '8 CloudsManipur is a leading web development company based in Manipur, India. We specialize in creating innovative digital solutions that help businesses thrive in the modern digital landscape.'
+        };
+
+        // Initialize website content
+        function initializeWebsite() {
+            document.getElementById('websiteLogo').textContent = websiteData.logo;
+            document.getElementById('heroTitle').textContent = websiteData.heroTitle;
+            document.getElementById('heroSubtitle').textContent = websiteData.heroSubtitle;
+            document.getElementById('aboutText').textContent = websiteData.aboutText;
+        }
+
+        // Google Sign Up
+        function signUpWithGoogle() {
+            const googleUser = prompt("Enter your Google email for sign up:");
+            if (googleUser && googleUser.includes('@')) {
+                alert(`✅ Successfully signed up with Google!\nEmail: ${googleUser}\nWelcome to 8 CloudsManipur!`);
+
+                // Show the professional website
+                document.getElementById('loginScreen').classList.add('hidden');
+                document.getElementById('websiteInterface').classList.remove('hidden');
+                initializeWebsite();
+            } else if (googleUser) {
+                alert("❌ Please enter a valid email address.");
+            }
+        }
+
+        function showSignIn() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('signinScreen').classList.remove('hidden');
+        }
+
+        function showLogin() {
+            document.getElementById('signinScreen').classList.add('hidden');
+            document.getElementById('workerInterface').classList.add('hidden');
+            document.getElementById('hostPanel').classList.add('hidden');
+            document.getElementById('websiteInterface').classList.add('hidden');
+            document.getElementById('loginScreen').classList.remove('hidden');
+            // Clear input fields
+            document.getElementById('username').value = '';
+            document.getElementById('mpin').value = '';
+            currentUser = '';
+        }
+
+        function validateLogin() {
+            const username = document.getElementById('username').value.trim();
+            const mpin = document.getElementById('mpin').value.trim();
+
+            // Host login
+            if (username === 'host' && mpin === '4444') {
+                currentUser = 'host';
+                document.getElementById('signinScreen').classList.add('hidden');
+                document.getElementById('hostPanel').classList.remove('hidden');
+                loadAttendanceRecords();
+                loadWebsiteEditor();
+                loadAllProjects();
+                loadAllMessages();
+                loadAllEvents();
+                return;
+            }
+
+            // Worker login (worker@1, worker@2, etc.)
+            if (username.startsWith('worker@') && mpin === '3333') {
+                const workerNumber = username.split('@')[1];
+                if (workerNumber && !isNaN(workerNumber)) {
+                    currentUser = username;
+                    document.getElementById('workerWelcomeText').textContent = `Welcome, ${username}!`;
+                    document.getElementById('signinScreen').classList.add('hidden');
+                    document.getElementById('workerInterface').classList.remove('hidden');
+                    loadWorkerProjects();
+                    loadWorkerMessages();
+                    return;
+                }
+            }
+
+            // Legacy users
+            if ((username === 'Luwanganba' || username === 'host') && mpin === '3333') {
+                currentUser = username;
+                document.getElementById('workerWelcomeText').textContent = `Welcome, ${username}!`;
+                document.getElementById('signinScreen').classList.add('hidden');
+                document.getElementById('workerInterface').classList.remove('hidden');
+                loadWorkerProjects();
+                loadWorkerMessages();
+                return;
+            }
+
+            // Generic error message - no specific credentials shown
+            alert('❌ Invalid credentials!\n\nPlease check your username and MPIN.\nContact your administrator if you need assistance.');
+        }
+
+        // Attendance Functions
+        function showAbsentReasons() {
+            document.getElementById('absentModal').style.display = 'block';
+        }
+
+        function closeAbsentModal() {
+            document.getElementById('absentModal').style.display = 'none';
+        }
+
+        function markAbsent(reason) {
+            closeAbsentModal();
+            const currentTime = new Date();
+            const timeString = currentTime.toLocaleString();
+            const dateString = currentTime.toDateString();
+
+            // Create attendance record with reason
+            const record = {
+                username: currentUser,
+                status: 'absent',
+                reason: reason,
+                time: timeString,
+                date: dateString,
+                timestamp: currentTime.getTime()
+            };
+
+            // Add to attendance data
+            attendanceData.push(record);
+            localStorage.setItem('attendanceData', JSON.stringify(attendanceData));
+
+            alert(`❌ Attendance marked as ABSENT\nUser: ${currentUser}\nReason: ${reason}\nTime: ${timeString}\nNote: Please contact HR if needed.`);
+
+            setTimeout(() => {
+                showLogin();
+            }, 2000);
+        }
+
+        function markAttendance(status) {
+            const currentTime = new Date();
+            const timeString = currentTime.toLocaleString();
+            const dateString = currentTime.toDateString();
+
+            // Create attendance record
+            const record = {
+                username: currentUser,
+                status: status,
+                time: timeString,
+                date: dateString,
+                timestamp: currentTime.getTime()
+            };
+
+            // Add to attendance data
+            attendanceData.push(record);
+            localStorage.setItem('attendanceData', JSON.stringify(attendanceData));
+
+            if (status === 'present') {
+                alert(`✅ Attendance marked as PRESENT\nUser: ${currentUser}\nTime: ${timeString}\nThank you!`);
+            }
+
+            setTimeout(() => {
+                showLogin();
+            }, 2000);
+        }
+
+        // Worker Tab Functions
+        function showWorkerTab(tabName) {
+            // Hide all worker tabs
+            document.querySelectorAll('#workerInterface .tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('#workerInterface .tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById('worker' + tabName.charAt(0).toUpperCase() + tabName.slice(1) + 'Tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Project Functions
+        function createProject() {
+            const title = document.getElementById('projectTitleInput').value.trim();
+            const worker = document.getElementById('projectWorkerSelect').value;
+            const description = document.getElementById('projectDescInput').value.trim();
+            const deadline = document.getElementById('projectDeadlineInput').value;
+
+            if (!title || !worker || !description || !deadline) {
+                alert('❌ Please fill in all project fields.');
+                return;
+            }
+
+            const project = {
+                id: Date.now(),
+                title: title,
+                assignedTo: worker,
+                description: description,
+                deadline: deadline,
+                status: 'pending',
+                createdBy: 'host',
+                createdAt: new Date().toLocaleString()
+            };
+
+            projectsData.push(project);
+            localStorage.setItem('projectsData', JSON.stringify(projectsData));
+
+            // Clear form
+            document.getElementById('projectTitleInput').value = '';
+            document.getElementById('projectWorkerSelect').value = '';
+            document.getElementById('projectDescInput').value = '';
+            document.getElementById('projectDeadlineInput').value = '';
+
+            loadAllProjects();
+            alert('📋 Project created and assigned successfully!');
+        }
+
+        function loadAllProjects() {
+            const container = document.getElementById('allProjectsList');
+            container.innerHTML = '';
+
+            if (projectsData.length === 0) {
+                container.innerHTML = '<p style="text-align: center; opacity: 0.7;">No projects found.</p>';
+                return;
+            }
+
+            projectsData.sort((a, b) => b.id - a.id).forEach(project => {
+                const item = document.createElement('div');
+                item.className = 'project-item';
+                item.innerHTML = `
+                    <div>
+                        <strong>${project.title}</strong><br>
+                        <small>Assigned to: ${project.assignedTo} | Deadline: ${project.deadline}</small><br>
+                        <small>${project.description}</small>
+                    </div>
+                    <div>
+                        <span class="status-${project.status}">${project.status.toUpperCase()}</span>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function loadWorkerProjects() {
+            const container = document.getElementById('workerProjectsList');
+            container.innerHTML = '';
+
+            const userProjects = projectsData.filter(project =>
+                project.assignedTo === currentUser || project.assignedTo === 'all'
+            );
+
+            if (userProjects.length === 0) {
+                container.innerHTML = '<p style="text-align: center; opacity: 0.7;">No projects assigned to you.</p>';
+                return;
+            }
+
+            userProjects.forEach(project => {
+                const item = document.createElement('div');
+                item.className = 'project-item';
+                item.innerHTML = `
+                    <div>
+                        <strong>${project.title}</strong><br>
+                        <small>Deadline: ${project.deadline}</small><br>
+                        <small>${project.description}</small>
+                    </div>
+                    <div>
+                        <span class="status-${project.status}">${project.status.toUpperCase()}</span><br>
+                        ${project.status === 'pending' ? `
+                            <button class="project-btn completed" onclick="updateProjectStatus(${project.id}, 'completed')">✅ Completed</button>
+                            <button class="project-btn failed" onclick="updateProjectStatus(${project.id}, 'failed')">❌ Can't Complete</button>
+                        ` : ''}
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function updateProjectStatus(projectId, status) {
+            const project = projectsData.find(p => p.id === projectId);
+            if (project) {
+                project.status = status;
+                project.completedAt = new Date().toLocaleString();
+                localStorage.setItem('projectsData', JSON.stringify(projectsData));
+                loadWorkerProjects();
+
+                if (status === 'completed') {
+                    alert('✅ Project marked as completed! Great job!');
+                } else {
+                    const reason = prompt('Please provide a reason why the project cannot be completed:');
+                    if (reason) {
+                        project.failureReason = reason;
+                        localStorage.setItem('projectsData', JSON.stringify(projectsData));
+                        alert('❌ Project status updated. Reason recorded.');
+                    }
+                }
+            }
+        }
+
+        // Message Functions
+        function sendMessage() {
+            const worker = document.getElementById('messageWorkerSelect').value;
+            const content = document.getElementById('messageContentInput').value.trim();
+
+            if (!worker || !content) {
+                alert('❌ Please select a worker and enter a message.');
+                return;
+            }
+
+            const message = {
+                id: Date.now(),
+                from: 'host',
+                to: worker,
+                content: content,
+                timestamp: new Date().toLocaleString(),
+                read: false
+            };
+
+            messagesData.push(message);
+            localStorage.setItem('messagesData', JSON.stringify(messagesData));
+
+            // Clear form
+            document.getElementById('messageWorkerSelect').value = '';
+            document.getElementById('messageContentInput').value = '';
+
+            loadAllMessages();
+            alert('📤 Message sent successfully!');
+        }
+
+        function loadAllMessages() {
+            const container = document.getElementById('allMessagesList');
+            container.innerHTML = '';
+
+            if (messagesData.length === 0) {
+                container.innerHTML = '<p style="text-align: center; opacity: 0.7;">No messages found.</p>';
+                return;
+            }
+
+            messagesData.sort((a, b) => b.id - a.id).forEach(message => {
+                const item = document.createElement('div');
+                item.className = 'message-item';
+                item.innerHTML = `
+                    <div>
+                        <strong>From: ${message.from} → To: ${message.to}</strong><br>
+                        <small>${message.timestamp}</small><br>
+                        <p>${message.content}</p>
+                    </div>
+                    <div>
+                        <span class="status-${message.read ? 'completed' : 'pending'}">${message.read ? 'READ' : 'UNREAD'}</span>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function loadWorkerMessages() {
+            const container = document.getElementById('workerMessagesList');
+            container.innerHTML = '';
+
+            const userMessages = messagesData.filter(message =>
+                message.to === currentUser || message.to === 'all' || message.from === currentUser
+            );
+
+            if (userMessages.length === 0) {
+                container.innerHTML = '<p style="text-align: center; opacity: 0.7;">No messages found.</p>';
+                return;
+            }
+
+            userMessages.forEach(message => {
+                const item = document.createElement('div');
+                item.className = 'message-item';
+                item.innerHTML = `
+                    <div>
+                        <strong>From: ${message.from}</strong><br>
+                        <small>${message.timestamp}</small><br>
+                        <p>${message.content}</p>
+                    </div>
+                `;
+                container.appendChild(item);
+
+                // Mark as read
+                if (message.to === currentUser && !message.read) {
+                    message.read = true;
+                    localStorage.setItem('messagesData', JSON.stringify(messagesData));
+                }
+            });
+        }
+
+        function sendWorkerReply() {
+            const content = document.getElementById('workerReplyInput').value.trim();
+
+            if (!content) {
+                alert('❌ Please enter a message.');
+                return;
+            }
+
+            const message = {
+                id: Date.now(),
+                from: currentUser,
+                to: 'host',
+                content: content,
+                timestamp: new Date().toLocaleString(),
+                read: false
+            };
+
+            messagesData.push(message);
+            localStorage.setItem('messagesData', JSON.stringify(messagesData));
+
+            // Clear form
+            document.getElementById('workerReplyInput').value = '';
+
+            loadWorkerMessages();
+            alert('📤 Reply sent to host successfully!');
+        }
+
+        // Event Functions
+        function createEvent() {
+            const title = document.getElementById('eventTitleInput').value.trim();
+            const date = document.getElementById('eventDateInput').value;
+            const description = document.getElementById('eventDescInput').value.trim();
+
+            if (!title || !date || !description) {
+                alert('❌ Please fill in all event fields.');
+                return;
+            }
+
+            const event = {
+                id: Date.now(),
+                title: title,
+                date: date,
+                description: description,
+                createdBy: 'host',
+                createdAt: new Date().toLocaleString()
+            };
+
+            eventsData.push(event);
+            localStorage.setItem('eventsData', JSON.stringify(eventsData));
+
+            // Clear form
+            document.getElementById('eventTitleInput').value = '';
+            document.getElementById('eventDateInput').value = '';
+            document.getElementById('eventDescInput').value = '';
+
+            loadAllEvents();
+            alert('🎉 Event created successfully!');
+        }
+
+        function loadAllEvents() {
+            const container = document.getElementById('allEventsList');
+            container.innerHTML = '';
+
+            if (eventsData.length === 0) {
+                container.innerHTML = '<p style="text-align: center; opacity: 0.7;">No events found.</p>';
+                return;
+            }
+
+            eventsData.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(event => {
+                const item = document.createElement('div');
+                item.className = 'project-item';
+                item.innerHTML = `
+                    <div>
+                        <strong>${event.title}</strong><br>
+                        <small>Date: ${event.date}</small><br>
+                        <small>${event.description}</small>
+                    </div>
+                    <div>
+                        <button class="project-btn" onclick="deleteEvent(${event.id})">🗑️ Delete</button>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function deleteEvent(eventId) {
+            if (confirm('Are you sure you want to delete this event?')) {
+                eventsData = eventsData.filter(event => event.id !== eventId);
+                localStorage.setItem('eventsData', JSON.stringify(eventsData));
+                loadAllEvents();
+                alert('🗑️ Event deleted successfully!');
+            }
+        }
+
+        function showEvents() {
+            const modal = document.getElementById('eventsModal');
+            const container = document.getElementById('eventsList');
+            container.innerHTML = '';
+
+            if (eventsData.length === 0) {
+                container.innerHTML = '<div class="event-card"><p style="text-align: center; opacity: 0.7;">No current events.</p></div>';
+            } else {
+                eventsData.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(event => {
+                    const eventCard = document.createElement('div');
+                    eventCard.className = 'event-card';
+                    eventCard.innerHTML = `
+                        <h3 class="event-title">${event.title}</h3>
+                        <p class="event-date">📅 ${event.date}</p>
+                        <p class="event-description">${event.description}</p>
+                    `;
+                    container.appendChild(eventCard);
+                });
+            }
+
+            modal.style.display = 'block';
+        }
+
+        function closeEvents() {
+            document.getElementById('eventsModal').style.display = 'none';
+        }
+
+        // Host Panel Functions
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('#hostPanel .tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('#hostPanel .tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName + 'Tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function loadAttendanceRecords() {
+            const recordsContainer = document.getElementById('attendanceRecords');
+            recordsContainer.innerHTML = '';
+
+            if (attendanceData.length === 0) {
+                recordsContainer.innerHTML = '<p style="text-align: center; opacity: 0.7;">No attendance records found.</p>';
+                return;
+            }
+
+            // Sort by most recent first
+            const sortedData = attendanceData.sort((a, b) => b.timestamp - a.timestamp);
+
+            sortedData.forEach(record => {
+                const row = document.createElement('div');
+                row.className = 'chart-row';
+                row.innerHTML = `
+                    <span><strong>${record.username}</strong></span>
+                    <span>${record.date}</span>
+                    <span>${record.time}</span>
+                    <span class="status-${record.status}">${record.status.toUpperCase()}${record.reason ? ` (${record.reason})` : ''}</span>
+                `;
+                recordsContainer.appendChild(row);
+            });
+        }
+
+        function loadWebsiteEditor() {
+            document.getElementById('logoInput').value = websiteData.logo;
+            document.getElementById('heroTitleInput').value = websiteData.heroTitle;
+            document.getElementById('heroSubtitleInput').value = websiteData.heroSubtitle;
+            document.getElementById('aboutTextInput').value = websiteData.aboutText;
+        }
+
+        function updateWebsite() {
+            websiteData.logo = document.getElementById('logoInput').value || '8 CloudsManipur';
+            websiteData.heroTitle = document.getElementById('heroTitleInput').value || 'Welcome to 8 CloudsManipur';
+            websiteData.heroSubtitle = document.getElementById('heroSubtitleInput').value || 'Professional Web Development Solutions for Modern Businesses';
+            websiteData.aboutText = document.getElementById('aboutTextInput').value || '8 CloudsManipur is a leading web development company...';
+
+            localStorage.setItem('websiteData', JSON.stringify(websiteData));
+            initializeWebsite();
+            alert('💾 Website content updated successfully!');
+        }
+
+        function previewWebsite() {
+            updateWebsite();
+            alert('👁️ Opening website preview...\nNote: In a real implementation, this would open the updated website in a new tab.');
+        }
+
+        function resetWebsite() {
+            if (confirm('🔄 Are you sure you want to reset all website content to default?')) {
+                websiteData = {
+                    logo: '8 CloudsManipur',
+                    heroTitle: 'Welcome to 8 CloudsManipur',
+                    heroSubtitle: 'Professional Web Development Solutions for Modern Businesses',
+                    aboutText: '8 CloudsManipur is a leading web development company based in Manipur, India. We specialize in creating innovative digital solutions that help businesses thrive in the modern digital landscape.'
+                };
+                localStorage.setItem('websiteData', JSON.stringify(websiteData));
+                loadWebsiteEditor();
+                initializeWebsite();
+                alert('🔄 Website content reset to default successfully!');
+            }
+        }
+
+        function refreshRecords() {
+            loadAttendanceRecords();
+            alert('📊 Records refreshed successfully!');
+        }
+
+        function clearRecords() {
+            if (confirm('⚠️ Are you sure you want to clear all attendance records?\nThis action cannot be undone.')) {
+                attendanceData = [];
+                localStorage.removeItem('attendanceData');
+                loadAttendanceRecords();
+                alert('🗑️ All records have been cleared.');
+            }
+        }
+
+        function exportRecords() {
+            if (attendanceData.length === 0) {
+                alert('❌ No records to export.');
+                return;
+            }
+
+            let csvContent = "Username,Date,Time,Status,Reason\n";
+            attendanceData.forEach(record => {
+                csvContent += `${record.username},${record.date},${record.time},${record.status},${record.reason || ''}\n`;
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `attendance_records_${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+
+            alert('📥 Attendance records exported successfully!');
+        }
+
+        // Website navigation
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function submitContactForm(event) {
+            event.preventDefault();
+            alert('📧 Thank you for your message! We will get back to you soon.');
+            event.target.reset();
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const eventsModal = document.getElementById('eventsModal');
+            const absentModal = document.getElementById('absentModal');
+
+            if (event.target == eventsModal) {
+                eventsModal.style.display = 'none';
+            }
+            if (event.target == absentModal) {
+                absentModal.style.display = 'none';
+            }
+        }
+
+        // Add Enter key support
+        document.addEventListener('DOMContentLoaded', function() {
+            const usernameInput = document.getElementById('username');
+            const mpinInput = document.getElementById('mpin');
+
+            usernameInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    mpinInput.focus();
+                }
+            });
+
+            mpinInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    validateLogin();
+                }
+            });
+
+            // Initialize website data
+            initializeWebsite();
+        });
+    </script>
+</body>
+</html>
